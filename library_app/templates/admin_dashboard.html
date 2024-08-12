@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Admin Dashboard</h1>
+
+    <div class="row">
+        <!-- Add New Book Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Add New Book</h5>
+                    <p class="card-text">Manage and add new books to the library collection. Click below to start adding new books.</p>
+                    <a href="{% url 'add_book' %}" class="btn btn-light">Add Book</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Student Information Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-white bg-secondary h-100">
+                <div class="card-body">
+                    <h5 class="card-title">View Student Information</h5>
+                    <p class="card-text">View and manage student information. Click below to see the list of registered students.</p>
+                    <a href="{% url 'student_info' %}" class="btn btn-light">View Students</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Pending Books Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body">
+                    <h5 class="card-title">View Pending Books</h5>
+                    <p class="card-text">Check which books are pending for return. Click below to view all pending books.</p>
+                    <a href="{% url 'all_pending_books' %}" class="btn btn-light">View Pending Books</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Borrowed Books Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-white bg-warning h-100">
+                <div class="card-body">
+                    <h5 class="card-title">View Borrowed Books</h5>
+                    <p class="card-text">See all the books that have been borrowed. Click below to view the list of borrowed books.</p>
+                    <a href="{% url 'all_borrowed_books' %}" class="btn btn-light">View Borrowed Books</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Book List Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-white bg-info h-100">
+                <div class="card-body">
+                    <h5 class="card-title">View Book List</h5>
+                    <p class="card-text">Explore the entire list of books available in the library. Click below to see the book list.</p>
+                    <a href="{% url 'all_book_list' %}" class="btn btn-light">View Book List</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Admin List Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-white bg-danger h-100">
+                <div class="card-body">
+                    <h5 class="card-title">View Admin List</h5>
+                    <p class="card-text">See all admin users who have access to the admin dashboard. Click below to view the admin list.</p>
+                    <a href="{% url 'admin_list' %}" class="btn btn-light">View Admins</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info mt-4" role="alert">
+        <h4 class="alert-heading">Welcome to the Admin Dashboard!</h4>
+        <p>Use the buttons above to manage books, students, and transactions. Make sure to keep the library organized and up-to-date.</p>
+    </div>
+</div>
+{% endblock %}

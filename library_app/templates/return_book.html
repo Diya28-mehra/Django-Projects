@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Return Book{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Return Book</h1>
+    <br>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ book_transaction.book.title }}</h5>
+            <p class="card-text"><strong>Author:</strong> {{ book_transaction.book.author }}</p>
+            <p class="card-text"><strong>Borrowed On:</strong> {{ book_transaction.borrow_date }}</p>
+            <p class="card-text"><strong>Fine:</strong> ₹{{ fine }}</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Pay ₹{{ fine }} and Return Book</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

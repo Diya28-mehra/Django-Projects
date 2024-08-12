@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} List of All Books{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Books by Category</h1>
+    <br>
+    <div class="mb-4">
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+    {% if books_by_category %}
+    <div class="accordion" id="bookCategories">
+        {% for category,books in books_by_category.items %}
+        <div class="card">
+            <div class="card-header" id="heading{{ category.id }}">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ category.id }}" aria-expanded="true" aria-controls="collapse{{ category.id }}">
+                        {{ category.name }}
+                    </button>
+                </h5>
+            </div>
+            <div id="collapse{{ category.id }}" class="collapse" aria-labelledby="heading{{ category.id }}" data-parent="#bookCategories">
+                <div class="card-body">
+                    {% if books %}
+                    <div class="list-group">
+                        {% for book in books %}
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">{{ book.title }}</h5>
+                            <p class="mb-1"><strong>Author:</strong> {{ book.author }}</p>
+                            <p class="mb-1"><strong>ISBN:</strong> {{ book.isbn }}</p>
+                            <p class="mb-1"><strong>Available Copies:</strong> {{ book.available_copies }} of {{ book.total_copies }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p>No books available in this category.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No categories available.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+

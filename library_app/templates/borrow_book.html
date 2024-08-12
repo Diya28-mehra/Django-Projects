@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrow Book{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Borrow {{ book.title }}</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="card-text"><strong>ISBN:</strong> {{ book.isbn }}</p>
+                    <p class="card-text"><strong>Category:</strong> {{ book.category.name }}</p>
+                    <p class="card-text"><strong>Available Copies:</strong> {{ book.available_copies }} of {{ book.total_copies }}</p>
+                    <p class="card-text">{{ instructions }}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-100">Confirm Borrow</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

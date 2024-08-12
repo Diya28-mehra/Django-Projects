@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Return Successful{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center text-success">Return Successful</h1>
+    <p class="text-center">Your book has been successfully returned. Thank you!</p>
+    <div class="text-center">
+        <a href="{% url 'return_book_list' %}" class="btn btn-secondary">Back to Borrowed Books</a>
+    </div>
+</div>
+{% endblock %}

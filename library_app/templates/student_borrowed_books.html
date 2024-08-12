@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrowed Books{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Your Borrowed Books</h1>
+
+    <div class="mb-4 text-center">
+        <a href="{% url 'student_home' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
+    {% if borrowed_books %}
+    <div class="row">
+        {% for transaction in borrowed_books %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 {% if transaction.is_overdue %}bg-danger text-white{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ transaction.book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ transaction.book.author }}</p>
+                    <p class="card-text"><strong>ISBN:</strong> {{ transaction.book.isbn }}</p>
+                    <p class="card-text"><strong>Borrow Date:</strong> {{ transaction.borrow_date }}</p>
+                    <p class="card-text"><strong>Time Borrowed:</strong> {{ transaction.time_gone }} days ago</p>
+                    {% if transaction.is_overdue %}
+                    <p class="card-text"><strong>Overdue:</strong> This book is overdue!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">You have no borrowed books.</p>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center">No borrowed books found.</p>
+    {% endif %}
+</div>
+{% endblock %}

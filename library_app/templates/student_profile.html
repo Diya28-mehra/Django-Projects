@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Student Profile</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    {% if student.profile_image %}
+                    <img src="{{ student.profile_image.url }}" class="img-fluid rounded-circle" alt="Profile Image" width="150" height="150">
+                    {% else %}
+                    {% load static%}
+                    <img src="{% static 'default_profile.png' %}" class="img-fluid rounded-circle" alt="Default Profile Image" width="150" height="150">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <h4>{{ student.username }}</h4>
+                    <p><strong>Email:</strong> {{ student.email }}</p>
+                    <p><strong>Library ID:</strong> {{ student.library_id }}</p>
+                    <p><strong>Number of Books Pending:</strong> {{ pending_books }}</p>
+                    <p><strong>Total Fine:</strong> ${{ total_fine }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'student_home' %}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}
